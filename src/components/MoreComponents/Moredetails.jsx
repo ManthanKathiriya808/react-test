@@ -1,15 +1,65 @@
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import Mycontext from "../../context/Mycontext"
 
-
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Typography,
+  Button,
+} from "@material-tailwind/react";
 
 const Moredetails = ()=>{
-    const {singleMovies} = useContext(Mycontext)
+
     const {movieId} = useParams()
+    const [movieInfo,setMovieInfo] = useState([])
+   const apiMovie =async (movieId)=>{
+        const res =await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=2254f6a103ea45b2d2965212918395da`)
+        const resp =await res.json()
+        // console.log(resp)
+        setMovieInfo(resp)
+        // setMovies(resp.results)
+    }
+
+console.log(movieInfo)
+    useEffect(()=>{
+        apiMovie(movieId)
+    },[movieId])
+
+
+
 
       return (
-       <div ></div>
+      <div className="bg-[{`https://image.tmdb.org/t/p/w300${movieInfo.backdrop_path}`}]">
+        <div className="row flex border mt-10 pt-10 flex-center text-center">
+
+                 <div className="col border text-start">
+                  <img  src={`https://image.tmdb.org/t/p/w300${movieInfo.poster_path}`} className="border mx-auto"/>
+                  </div>
+                <div className="col flex  flex-column   border">
+
+                  
+                        <div className="title fs-large">
+                              <h1>Title : {movieInfo.title}</h1>
+                        </div>
+                        <div className="title fs-large">
+                              <h1>Tagline : {movieInfo.tagline}</h1>
+                        </div>
+                        <div className="title fs-small">
+                              <h5>overview : {movieInfo.
+overview
+}</h5>
+                        </div>
+                        <div className="title fs-small">
+                              <h5>release_date : {movieInfo.
+release_date
+}</h5>
+                        </div>
+                      
+                </div>         
+        </div>
+      </div>
     )
 
 }

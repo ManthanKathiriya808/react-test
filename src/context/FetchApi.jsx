@@ -27,20 +27,13 @@ const [singleMovies,setSingleMovies] = useState([])
         // console.log(resp)
         setMovies(resp.results)
     }
-    const apiMovie =async (id)=>{
-        const res =await fetch(`
-https://api.themoviedb.org/3/movie/1257960?api_key=2254f6a103ea45b2d2965212918395da`)
-        const resp =await res.json()
-        // console.log(resp)
-        setSingleMovies(resp)
-        // setMovies(resp.results)
-    }
+ 
 
 
 
 useEffect(()=>{
     useApi()
-    apiMovie()
+   
 },[])
 
     return(
