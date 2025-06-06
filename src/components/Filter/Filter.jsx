@@ -1,7 +1,12 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
+import Geners from '../geners/Geners'
+import Mycontext from '../../context/Mycontext'
 
 
 const Filter = () => {
+
+
+
 
 
   return (
@@ -27,21 +32,12 @@ const Filter = () => {
                         <p className="font-medium">
                             Filters
                         </p>
-                        <button className="px-4 py-2 bg-gray-50 hover:bg-gray-200 text-gray-800 text-sm font-medium rounded-md" >
+                        <button  className="px-4 py-2 bg-gray-50 hover:bg-gray-200 text-gray-800 text-sm font-medium rounded-md" >
                             Reset Filter
                         </button>
                     </div>
                     <div>
-                        <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 mt-4">
-                            <select className="px-4 py-3 w-full rounded-md bg-gray-50 border-transparent outline-0 focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
-                                <option value="jacket">comedy</option>
-                                <option value="shirt">horror</option>
-                                <option value="mobile">thriller</option>
-                                <option value="jacket">classic</option>
-                            </select>
-                           
-
-                        </div>
+                       <Geners/>
                     </div>
                 </div>
             </div>

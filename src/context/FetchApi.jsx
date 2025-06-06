@@ -20,24 +20,42 @@ const FetchApi =({children})=>{
 
 const [movies,setMovies] = useState([])
 const [singleMovies,setSingleMovies] = useState([])
+const [value,setValue] = useState(1)
+const [genres,setGeneres] = useState([])
 
+const movieGeners = async()=>{
+          const res =await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=2254f6a103ea45b2d2965212918395da`)
+        const resp =await res.json()
+       setGeneres(resp.genres)
+}
     const useApi =async ()=>{
-        const res =await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=2254f6a103ea45b2d2965212918395da`)
+        const res =await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=2254f6a103ea45b2d2965212918395da&page=${value}`)
         const resp =await res.json()
         // console.log(resp)
         setMovies(resp.results)
     }
  
-
-
+    const handlePrev = ()=>{
+        setValue(value-1) 
+    }
+    const handleNext = ()=>{
+        setValue(value+1)
+    }
+// console.log(value)
+    
 
 useEffect(()=>{
     useApi()
    
+},[value])
+
+useEffect(()=>{
+movieGeners()
+   
 },[])
 
     return(
-            <Mycontext.Provider value={{movies,setMovies,singleMovies}}>
+            <Mycontext.Provider value={{movies,setMovies,singleMovies,value,setValue,handlePrev,handleNext,setGeneres,genres}}>
                 {children}
             </Mycontext.Provider>
     )

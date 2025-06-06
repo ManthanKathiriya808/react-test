@@ -14,6 +14,7 @@ const Moredetails = ()=>{
 
     const {movieId} = useParams()
     const [movieInfo,setMovieInfo] = useState([])
+    const [movieVideo,setMovieVideo] = useState([])
    const apiMovie =async (movieId)=>{
         const res =await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=2254f6a103ea45b2d2965212918395da`)
         const resp =await res.json()
@@ -21,11 +22,23 @@ const Moredetails = ()=>{
         setMovieInfo(resp)
         // setMovies(resp.results)
     }
+   const VideoApi =async (movieId)=>{
+        const res =await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=2254f6a103ea45b2d2965212918395da`)
+        const resp =await res.json()
+        // console.log(resp)
+        setMovieVideo(resp.results)
+        // setMovies(resp.results)
+    }
+    console.log(movieVideo[0]?.key)
+console.log(movieVideo[0]?.id)
 
-console.log(movieInfo)
+    
+
     useEffect(()=>{
         apiMovie(movieId)
-    },[movieId])
+          VideoApi(movieId)
+      },[movieId])
+
 
 
 
@@ -58,6 +71,22 @@ release_date
                         </div>
                       
                 </div>         
+        </div>
+
+        <div className="flex justify-content-center">
+        
+    
+    {movieVideo.length > 0 && (
+                    <iframe
+                        width="750"
+                        height="500"
+                        src={`https://www.youtube.com/embed/${movieVideo[0]?.key}`}
+                        title="YouTube video player"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                    ></iframe>
+                )}
         </div>
       </div>
     )
