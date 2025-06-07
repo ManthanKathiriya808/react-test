@@ -6,7 +6,7 @@ import Mycontext from '../../context/Mycontext'
 const Filter = () => {
 
 
-
+const {search,setSearch} = useContext(Mycontext)
 
 
   return (
@@ -21,7 +21,8 @@ const Filter = () => {
                             </svg>
                         </div>
                         <input
-
+                            value={search}
+                            onChange={(e)=> setSearch(e.target.value)}
                             type="text"
                             name="searchkey"
                             id="searchkey"

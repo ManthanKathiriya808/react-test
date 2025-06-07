@@ -22,7 +22,7 @@ const [movies,setMovies] = useState([])
 const [singleMovies,setSingleMovies] = useState([])
 const [value,setValue] = useState(1)
 const [genres,setGeneres] = useState([])
-
+const [search,setSearch]= useState('')
 const movieGeners = async()=>{
           const res =await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=2254f6a103ea45b2d2965212918395da`)
         const resp =await res.json()
@@ -55,7 +55,7 @@ movieGeners()
 },[])
 
     return(
-            <Mycontext.Provider value={{movies,setMovies,singleMovies,value,setValue,handlePrev,handleNext,setGeneres,genres}}>
+            <Mycontext.Provider value={{movies,setMovies,singleMovies,value,setValue,handlePrev,handleNext,setGeneres,genres,search,setSearch}}>
                 {children}
             </Mycontext.Provider>
     )
