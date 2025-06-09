@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 
 const MovieList = ()=>{
 
-    const {movies,setMovies} = useContext(Mycontext)
+    const {movies,setMovies,search} = useContext(Mycontext)
     // console.log(movies)
 
 
@@ -17,7 +17,7 @@ const MovieList = ()=>{
     
     
     {
-        movies?.map((ele)=>{
+        movies.filter((ele)=>ele.title.toLowerCase().includes(search))?.map((ele)=>{
             
             return(
                             <div class="col" key={ele.id}>
