@@ -1,5 +1,5 @@
 import { Pagination } from "react-bootstrap"
-import Authi from "../auth/auth"
+import Authi from "../auth/Authi"
 
 import Filter from "../Filter/Filter"
 import MovieList from "../MovieList/MovieList"
